@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Songs.csss';
+import './Songs.css';
 
 export default class Songs extends Component {
   state = {
@@ -24,10 +24,10 @@ export default class Songs extends Component {
       <div>
         <h1>Best of Pliano classics</h1>
         <section className='Songs'>
-          {this.state.courses.map(course => {
+          {this.state.songs.map(song => {
             return (
-              <article className='Song' key={course.id}>
-                {course.author} : {course.title}
+              <article className='Song' key={song.id}>
+                {song.author} : {song.title}
               </article>
             );
           })}
