@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Songs.css';
+import { Link, Route } from 'react-router-dom';
+import Song from './Song/Song';
 
 export default class Songs extends Component {
   state = {
@@ -27,7 +29,10 @@ export default class Songs extends Component {
           {this.state.songs.map(song => {
             return (
               <article className='Song' key={song.id}>
-                {song.author} : {song.title}
+                <Link to={`/songs/${song.id}`}>
+                  {song.author} : {song.title}
+                </Link>
+                <Route path={`/songs/${song.id}`} component={Song} />
               </article>
             );
           })}
