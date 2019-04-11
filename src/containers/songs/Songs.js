@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Songs.css';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Song from './Song/Song';
 
 export default class Songs extends Component {
@@ -46,13 +46,17 @@ export default class Songs extends Component {
   render() {
     let songs = this.state.songs.map(song => {
       return (
-        <Song
+        <Link
           key={song.id}
-          author={song.author}
-          title={song.title}
-          description={song.description}
-          clicked={() => this.songSelectedHandler(song.id)}
-        />
+          to={{
+            pathname: this.props.match.url + '/' + song.id,
+            search: '?title=' + song.title
+          }}
+        >
+          <article className='Song'>
+            {song.author}, {song.title}
+          </article>
+        </Link>
       );
     });
     return (

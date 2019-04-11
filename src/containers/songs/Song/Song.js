@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function Song(props) {
-  console.log('££$$: ', props);
-  return (
-    <div onClick={props.clicked}>
-      <h2>{props.author}</h2>
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
-    </div>
-  );
+export default class Song extends Component {
+  state = {
+    songTitle: ''
+  };
+
+  componentDidMount() {
+    this.parseQueryParams();
+  }
+
+  componentDidUpdate() {
+    this.parseQueryParams();
+  }
+
+  parseQueryParams() {
+    const query = new URLSearchParams(this.props.location.search);
+    for (let param of query.entries()) {
+      if (this.state.songTitle !== param[1]) {
+        this.setState({ songTitle: param[1] });
+      }
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.songTitle}</h1>
+        <p>Reference No: {this.props.match.params.id}</p>
+      </div>
+    );
+  }
 }
