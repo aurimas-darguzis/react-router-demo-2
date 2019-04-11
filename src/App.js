@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import Instruments from './containers/Instruments/Instruments';
 import Songs from './containers/Songs/Songs';
+import Song from './containers/Songs/Song/Song';
 
 class App extends Component {
   render() {
@@ -18,8 +19,11 @@ class App extends Component {
             </li>
           </ul>
         </div>
-        <Route path='/songs' component={Songs} />
-        <Route path='/instruments' component={Instruments} />
+        <Switch>
+          {/* <Route path='/songs/:id' component={Song} /> */}
+          <Route path='/songs' component={Songs} />
+          <Route path='/instruments' exact component={Instruments} />
+        </Switch>
       </BrowserRouter>
     );
   }
